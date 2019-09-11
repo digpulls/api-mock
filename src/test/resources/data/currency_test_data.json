@@ -1,0 +1,14 @@
+[
+  {
+    "testDescription": "Convert from USD To INR",
+    "from": "USD",
+    "to": "INR",
+    "fromAmount": 100
+  },
+  {
+    "testDescription": "Convert from USD To NRS",
+    "from": "USD",
+    "to": "NRS",
+    "fromAmount": 100
+  }
+]

@@ -1,0 +1,43 @@
+[
+  {
+    "testDescription": "Employee with duplicate name",
+    "request": {
+      "name": "Employee Name",
+      "salary": 100000,
+      "age": 30
+    },
+    "expectedStatusCode": 200,
+    "errorCode": "Integrity constraint violation: 1062 Duplicate entry"
+  },
+  {
+    "testDescription": "Employee with missing name",
+    "request": {
+      "age": 30,
+      "salary": 100000
+    },
+    "expectedStatusCode": 200,
+    "errorCode": "Integrity constraint violation: 1048 Column 'employee_name' cannot be null"
+  },
+  {
+    "testDescription": "Employee with missing salary",
+    "request": {
+      "name": "Employee Name",
+      "age": 30
+    },
+    "expectedStatusCode": 200,
+    "errorCode": "Integrity constraint violation: 1048 Column 'employee_salary' cannot be null"
+  },
+  {
+    "testDescription": "Employee with missing age",
+    "request": {
+      "name": "Employee Name",
+      "salary": 100000
+    },
+    "expectedStatusCode": 200,
+    "errorCode": "Integrity constraint violation: 1048 Column 'employee_age' cannot be null"
+  }
+
+  // More scenarios like:
+  // 1. character length validation
+  // 1. Authorization
+]
