@@ -21,9 +21,8 @@ test:
   stage: test
   script:
     - gradle test
-    script:
-      - pwd
-      - ls
+    - pwd
+    - ls
   artifacts:
     reports:
       junit: build/test-results/test/**/TEST-*.xml
