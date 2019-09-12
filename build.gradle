@@ -28,7 +28,12 @@ dependencies {
 test {
     useTestNG() {
         useDefaultListeners = true
+        scanForTestClasses = false
     }
-    testLogging.showStandardStreams = true
     reports.html.enabled = false
+    testLogging {
+        showStandardStreams = true
+        exceptionFormat "full"
+        events "started", "passed", "skipped", "failed", "standardOut", "standardError"
+    }
 }
