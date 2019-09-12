@@ -1,15 +1,11 @@
 image: gradle:alpine
 
-variables:
-  GRADLE_OPTS: "-Dorg.gradle.daemon=false"
-
 before_script:
   - export GRADLE_USER_HOME=`pwd`/.gradle
 
 stages:
   - build
   - test
-  - deploy
 
 build:
   stage: build
@@ -21,32 +17,10 @@ build:
       - build
       - .gradle
 
-
 test:
   stage: test
-  script: gradle check
-  cache:
-    key: "$CI_COMMIT_REF_NAME"
-    policy: pull
-    paths:
-      - build
-      - .gradle
-
-  artifacts:
-    paths:
-      - build/reports/tests/test/
-
-deploy:
-  stage: deploy
-  dependencies:
-    - test
   script:
-    - mkdir public
-    - mv build/reports/tests/test/* public
+    - gradle test
   artifacts:
-    paths:
-      - public
-
-  only:
-    - master
-  when: always
+    reports:
+      junit: build/test-results/test/**/TEST-*.xml
