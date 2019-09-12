@@ -16,18 +16,23 @@ build:
 test:
   stage: test
   script:
-    - mkdir public
     - ./gradlew test
+
   artifacts:
     paths:
       - build/reports/tests/test/
-  cache:
-    key: "$CI_COMMIT_REF_NAME"
-    policy: pull
-    paths:
-      - build
-      - .gradle
 
-after_script:
-  - mv build/reports/tests/test/* public
+pages:
+  stage: deploy
+  dependencies:
+    - test
+  script:
+    - mkdir public
+    - mv build/reports/tests/test/* public
+  artifacts:
+    paths:
+      - public
+
+  only:
+    - master
 
