@@ -9,6 +9,7 @@ before_script:
 stages:
   - build
   - test
+  - deploy
 
 build:
   stage: build
@@ -27,13 +28,8 @@ test:
   artifacts:
     paths:
       - build/reports/tests/test/
-  cache:
-    key: "$CI_COMMIT_REF_NAME"
-    policy: pull
-    paths:
-      - build
-      - .gradle
-pages:
+
+deploy:
   stage: deploy
   dependencies:
     - test
@@ -43,3 +39,7 @@ pages:
   artifacts:
     paths:
       - public
+
+  only:
+    - master
+  when: always
