@@ -24,4 +24,4 @@ test:
     - cd build/test-results/test/ && ls
   artifacts:
     reports:
-      junit: build/test-results/test/**/TEST-*.xml
+      junit: build/test-results/test/TEST-*.xml
