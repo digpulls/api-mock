@@ -27,7 +27,7 @@ dependencies {
 
 test {
     useTestNG() {
-        useDefaultListeners = true
+        //useDefaultListeners = true
         scanForTestClasses = false
     }
     reports.html.enabled = false
